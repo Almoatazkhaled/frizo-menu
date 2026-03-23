@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -625,4 +626,633 @@ function sendWhatsApp(){
 
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frezo Union</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f3f3f3;
+  box-sizing:border-box;
+  direction:rtl;
+}
+*{
+  box-sizing:border-box;
+}
+
+/* 🔵 HEADER */
+.header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#007bff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 15px;
+  z-index:1000;
+  direction:ltr; /* ده أهم سطر */
+}
+.header-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.header h3{
+  color:white;
+  margin:0;
+}
+.logo{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+/* 🔵 HEADER BUTTONS */
+.header-buttons{
+  display:flex;
+  gap:10px;
+}
+.header-cart-btn, .header-order-btn{
+  background:rgba(255,255,255,0.2);
+  color:white;
+  border:1px solid rgba(255,255,255,0.3);
+  padding:8px 15px;
+  border-radius:8px;
+  font-size:14px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  transition:all 0.3s ease;
+}
+.header-cart-btn:hover, .header-order-btn:hover{
+  background:rgba(255,255,255,0.3);
+  transform:translateY(-1px);
+}
+.header-cart-badge{
+  background:#ff4444;
+  color:white;
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:5px;
+  position:relative;
+  top:-8px;
+  left:-5px;
+}
+
+/* 🔥 NAV */
+.nav{
+  position:fixed;
+  top:60px;
+  left:0;
+  width:180px;
+  height:100%;
+  background:#e0e0e0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  padding:15px 10px;
+  gap:10px;
+}
+
+.nav div{
+  background:#cfcfcf;
+  color:#000;
+  padding:14px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  width:100%;
+  text-align:center;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 🔵 HOME */
+.home{
+  margin-top:120px;
+  margin-bottom:80px;
+  text-align:center;
+  padding:40px 20px;
+  margin-left:180px;
+}
+.big-logo{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:auto;
+  opacity:0.05;
+}
+.home p{
+  margin-top:20px;
+  font-size:18px;
+}
+
+/* 🔵 PRODUCTS */
+.products{
+  margin-top:120px;
+  margin-bottom:80px;
+  padding:10px;
+  display:none;
+  margin-left:180px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  gap:15px;
+  width:100%;
+  box-sizing:border-box;
+}
+@media (max-width:768px){
+  .grid{
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+  }
+}
+@media (max-width:480px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.card{
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  align-items: center;
+  border:2px solid #007bff;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.2);
+}
+.card img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.card .content{
+  flex: 1;
+  text-align: right;
+}
+.card h4{
+  margin: 0;
+  font-size: 18px;
+  color: #000;
+  text-align: right;
+}
+.price{
+  margin: 5px 0;
+  color: #000;
+  font-weight: bold;
+  text-align: right;
+}
+.qty{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+.plus, .minus{
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.qty span{
+  font-size: 16px;
+}
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .card img {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+/* 🔵 FOOTER */
+.footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#007bff;
+  border-top:2px solid #007bff;
+  display:flex;
+  justify-content:space-around;
+  padding:10px;
+  color:white;
+}
+.footer-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:white;
+  cursor:pointer;
+}
+.footer-icon{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+  opacity:0.5;
+}
+.footer-item span{
+  font-size:14px;
+}
+
+/* 🔵 POPUP */
+.cart-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  backdrop-filter:blur(5px);
+  background:rgba(0,0,0,0.5);
+  display:none;
+  z-index:1001;
+}
+.cart-box{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  max-width:400px;
+  background:white;
+  border-radius:15px;
+  display:none;
+  z-index:1002;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* HEADER */
+.cart-header{
+  background:#007bff;
+  color:white;
+  padding:15px;
+  text-align:center;
+  font-weight:bold;
+  font-size:18px;
+}
+
+/* CONTENT */
+.cart-content{
+  max-height:400px;
+  overflow:auto;
+  padding:15px;
+}
+
+/* ITEM */
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+  font-size:14px;
+}
+
+.cart-name{
+  flex:1;
+  text-align:right;
+  font-weight:500;
+}
+
+.cart-price{
+  font-weight:bold;
+  color:#007bff;
+  margin-left:10px;
+  min-width:70px;
+  text-align:left;
+}
+
+.cart-qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:10px;
+}
+
+.cart-qty button{
+  background:#007bff;
+  color:white;
+  border:none;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:14px;
+}
+
+/* TOTAL */
+.cart-total{
+  border-top:2px solid #007bff;
+  padding:15px;
+  background:#f8f9ff;
+  font-size:16px;
+  font-weight:bold;
+  text-align:center;
+  color:#007bff;
+}
+
+/* ACTIONS */
+.cart-actions{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  gap:10px;
+}
+.order-btn{
+  background:linear-gradient(45deg, #28a745, #20c997);
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+  flex:1;
+  font-weight:bold;
+}
+.close-btn{
+  background:#6c757d;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+@media (max-width:480px){
+  .header-buttons{
+    gap:5px;
+  }
+  .header-cart-btn, .header-order-btn{
+    padding:6px 12px;
+    font-size:13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <img src="logoo.jpeg" class="logo">
+    <h3>Frizo Union</h3>
+  </div>
+  
+  <div class="header-buttons">
+    <button id="headerCartBtn" class="header-cart-btn" onclick="openCart()">
+      🛒 السلة 
+      <span class="header-cart-badge" id="cartBadge" style="display:none;">0</span>
+    </button>
+    <button class="header-order-btn" onclick="sendWhatsApp()">
+      إتمام الطلب
+    </button>
+  </div>
+</div>
+
+<div class="nav">
+  <div onclick="home()">الصفحه الرئيسيه</div>
+  <div onclick="cat('meat')">لحوم</div>
+  <div onclick="cat('chicken')">دواجن</div>
+  <div onclick="cat('sea')">بحريات</div>
+  <div onclick="cat('veg')">خضار</div>
+  <div onclick="cat('potato')">بطاطس</div>
+</div>
+
+<div class="home" id="home">
+  <img src="nobglogo.png" class="big-logo">
+  <p>اهلا بيك 👋<br>اختار منتجاتك بسهولة من فريزو يونيون</p>
+</div>
+
+<div class="products" id="products">
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="footer">
+  <a href="tel:01500782992" class="footer-item">
+    <img src="phonecall.png" class="footer-icon">
+    <span>01500782992</span>
+  </a>
+  <a href="https://www.facebook.com/share/1C4SocXAew/?mibextid=wwXIfr" target="_blank" class="footer-item">
+    <img src="facebook.png" class="footer-icon">
+    <span>Facebook</span>
+  </a>
+</div>
+
+<!-- 🔵 CART POPUP -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<div class="cart-box" id="cartBox">
+  <div class="cart-header">السلة <span id="cartItemsCount">0</span> من المنتجات</div>
+  <div class="cart-content" id="cartContent"></div>
+  <div class="cart-total" id="cartTotal">المجموع: 0 جنيه</div>
+  <div class="cart-actions">
+    <button onclick="sendWhatsApp()" class="order-btn">📱 إرسال الطلب على واتساب</button>
+    <button onclick="closeCart()" class="close-btn">رجوع</button>
+  </div>
+</div>
+
+<script>
+let data=[
+  {name:"بط العابد",price:110,cat:"chicken",img:"بط.webp"},
+  {name:"صدور بط العابد",price:110,cat:"chicken",img:"بط.webp"},
+  {name:"بروست خمس قطع",price:140,cat:"chicken",img:"بروست.webp"},
+  {name:"سجق فريزو",price:190,cat:"meat",img:"سجق.jpeg"},
+  {name:"برجر",price:190,cat:"meat",img:"برجر.jpg"},
+  {name:"كفتة",price:190,cat:"meat",img:"كفته.jpeg"},
+  {name:"كفتة داوود",price:190,cat:"meat",img:"داوود.png"},
+  {name:"لحمة شرائح",price:285,cat:"meat",img:"شرايح.jpeg"},
+  {name:"شاورما لحمة",price:285,cat:"meat",img:"شاورما.jpeg"},
+  {name:"مفروم مخصوص",price:290,cat:"meat",img:"مفروم.png"},
+  {name:"مفروم عادي",price:200,cat:"meat",img:"مفروم.png"},
+  {name:"لحمة مكعبات برازيلي",price:300,cat:"meat",img:"مكعبات.jpeg"},
+  {name:"موزة برازيلي",price:290,cat:"meat",img:"موزه برازيلي.webp"},
+  {name:"موزة فرخة",price:300,cat:"meat",img:"فرخه.jpg"},
+  {name:"كبدةامريكي",price:200,cat:"meat",img:"كبده.jpeg"},
+  {name:"كبدة برازيلي",price:120,cat:"meat",img:"كبده.jpeg"},
+  {name:"ريش بتلو",price:210,cat:"meat",img:"ريش.webp"},
+  {name:"كلاوي",price:210,cat:"meat",img:"كلاوي.webp"},
+  {name:"جمبري سعودي 30*40",price:580,cat:"sea",img:"جمبري.webp"},
+  {name:"(2.5kilo)بطاطس فريزو درجة اولي",price:115,cat:"potato",img:"بطاطس.jpg"},
+  {name:"(2.5kilo)بطاطس فريزو درجة تانية",price:100,cat:"potato",img:"بطاطس.jpg"},
+  {name:"بامية اكسترا بسمة",price:50,cat:"veg",img:"اكسترا.webp"},
+  {name:"بامية زيرو بسمة",price:45,cat:"veg",img:"زيرو.webp"},
+  {name:"بامية ممتاز بسمة",price:30,cat:"veg",img:"ممتاز.webp"},
+  {name:"بسلة سادة بسمة",price:50,cat:"veg",img:"بسله.webp"},
+  {name:"بسلة و جزر بسمة",price:30,cat:"veg",img:"بسله وجزر.webp"},
+  {name:"ملوخية بسمة",price:20,cat:"veg",img:"ملوخيه.webp"},
+  {name:"فاصوليا بسمة",price:22,cat:"veg",img:"فاصوليا.png"},
+  {name:"خضار مشكل بسمة",price:22,cat:"veg",img:"مشكل.webp"},
+  {name:"شوربة خضار بسمة",price:20,cat:"veg",img:"شوربه.webp"},
+];
+
+let quantities = {};
+let currentCategory = '';
+
+let elements = {
+  home: document.getElementById("home"),
+  products: document.getElementById("products"),
+  grid: document.getElementById("grid"),
+  cartOverlay: document.getElementById("cartOverlay"),
+  cartBox: document.getElementById("cartBox"),
+  cartContent: document.getElementById("cartContent"),
+  cartTotal: document.getElementById("cartTotal"),
+  cartItemsCount: document.getElementById("cartItemsCount"),
+  cartBadge: document.getElementById("cartBadge"),
+  headerCartBtn: document.getElementById("headerCartBtn")
+};
+
+function updateCartBadge() {
+  let totalItems = Object.values(quantities).reduce((a,b)=>a+b,0);
+  elements.cartBadge.textContent = totalItems;
+  elements.cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+function home(){
+  elements.products.style.display="none";
+  elements.home.style.display="block";
+  currentCategory = '';
+}
+
+function cat(c){
+  currentCategory = c;
+  elements.home.style.display="none";
+  elements.products.style.display="block";
+  let html="";
+  data.filter(p=>p.cat==c).forEach(p=>{
+    let qty = quantities[p.name] || 0;
+    html+=`
+    <div class="card">
+      <img src="${p.img}">
+      <div class="content">
+        <h4>${p.name}</h4>
+        <div class="price">${p.price} جنيه</div>
+        <div class="qty">
+          <button class="minus" onclick="decrease('${p.name.replace(/'/g, "\\'")}')" ${qty === 0 ? "style='opacity:0.5;cursor:not-allowed;'" : ""}>-</button>
+          <span>${qty}</span>
+          <button class="plus" onclick="increase('${p.name.replace(/'/g, "\\'")}')">+</button>
+        </div>
+      </div>
+    </div>`;
+  });
+  elements.grid.innerHTML=html;
+}
+
+function increase(name) {
+  let product = data.find(p => p.name === name);
+  quantities[name] = (quantities[name] || 0) + 1;
+  if(currentCategory) cat(currentCategory);
+  renderCart();
+  updateCartBadge();
+}
+
+function decrease(name) {
+  if ((quantities[name] || 0) > 0) {
+    quantities[name]--;
+    if(quantities[name] === 0) delete quantities[name];
+    if(currentCategory) cat(currentCategory);
+    renderCart();
+    updateCartBadge();
+  }
+}
+
+function renderCart() {
+  let totalItems = 0;
+  let totalPrice = 0;
+  let html = '';
+  
+  for(let name in quantities) {
+    let qty = quantities[name];
+    let product = data.find(p => p.name === name);
+    
+    if(product) {
+      totalItems += qty;
+      totalPrice += product.price * qty;
+
+      html += `
+        <div class="cart-item">
+          <div class="cart-name">${product.name}</div>
+          <div class="cart-price">${product.price * qty} جنيه</div>
+          <div class="cart-qty">
+            <button onclick="decrease('${name.replace(/'/g, "\\'")}')">-</button>
+            <span>${qty}</span>
+            <button onclick="increase('${name.replace(/'/g, "\\'")}')">+</button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  elements.cartContent.innerHTML = html || "السلة فاضية";
+  elements.cartTotal.innerHTML = "المجموع: " + totalPrice + " جنيه";
+  elements.cartItemsCount.innerText = totalItems;
+}
+
+function openCart(){
+  elements.cartOverlay.style.display="block";
+  elements.cartBox.style.display="block";
+}
+
+function closeCart(){
+  elements.cartOverlay.style.display="none";
+  elements.cartBox.style.display="none";
+}
+
+function sendWhatsApp(){
+  let msg = "طلب جديد:%0A";
+  let total = 0;
+
+  for(let name in quantities){
+    let qty = quantities[name];
+    let product = data.find(p => p.name === name);
+    if(product){
+      msg += `${product.name} × ${qty}%0A`;
+      total += product.price * qty;
+    }
+  }
+
+  msg += `%0Aالمجموع: ${total} جنيه;`;
+
+  window.open(`https://wa.me/201500782992?text=${msg}`, '_blank');
+}
+
+</script>
+</body>
+>>>>>>> 52af6c7108cea3efd4730a4850983fbfef45ddad
 </html>
