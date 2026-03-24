@@ -466,9 +466,9 @@ body{
       🛒 السلة 
       <span class="header-cart-badge" id="cartBadge" style="display:none;">0</span>
     </button>
-    <button class="header-order-btn" onclick="sendWhatsApp()">
-      إتمام الطلب
-    </button>
+    <button class="header-order-btn" onclick="validateOrder()">
+  إتمام الطلب
+</button>
   </div>
 </div>
 
@@ -510,7 +510,7 @@ body{
   <div class="cart-content" id="cartContent"></div>
   <div class="cart-total" id="cartTotal">المجموع: 0 جنيه</div>
   <div class="cart-actions">
-    <button onclick="sendWhatsApp()" class="order-btn">📱 إرسال الطلب على واتساب</button>
+<button onclick="validateOrder()" class="order-btn">📱 إرسال الطلب على واتساب</button>
     <button onclick="closeCart()" class="close-btn">رجوع</button>
   </div>
 </div>
@@ -722,6 +722,41 @@ function sendWhatsApp(){
 
 setActiveNav('home');
 home();
+
+function validateOrder() {
+  let totalItems = Object.values(quantities).reduce((a,b)=>a+b,0);
+
+  if (totalItems === 0) {
+    showMessage("برجاء تحديد منتج واحد على الأقل");
+    return;
+  }
+
+  sendWhatsApp();
+}
+
+function showMessage(text) {
+  let msg = document.createElement("div");
+  msg.innerText = text;
+
+  msg.style.position = "fixed";
+  msg.style.bottom = "80px";
+  msg.style.left = "50%";
+  msg.style.transform = "translateX(-50%)";
+  msg.style.background = "#333";
+  msg.style.color = "#fff";
+  msg.style.padding = "10px 20px";
+  msg.style.borderRadius = "8px";
+  msg.style.fontSize = "14px";
+  msg.style.zIndex = "9999";
+  msg.style.opacity = "0.9";
+
+  document.body.appendChild(msg);
+
+  setTimeout(() => {
+    msg.remove();
+  }, 2000);
+}
+
 </script>
 </body>
 </html>
