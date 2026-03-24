@@ -492,9 +492,9 @@ body{
 </div>
 
 <div class="footer">
-  <a href="tel:01500782992" class="footer-item">
+  <a href="tel:01035794567" class="footer-item">
     <img src="phonecall.png" class="footer-icon">
-    <span>01500782992</span>
+    <span>01035794567</span>
   </a>
   <a href="https://www.facebook.com/share/1C4SocXAew/?mibextid=wwXIfr" target="_blank" class="footer-item">
     <img src="facebook.png" class="footer-icon">
@@ -517,8 +517,8 @@ body{
 
 <script>
 let data=[
-  {name:"بط العابد",price:110,cat:"chicken",img:"بط.webp"},
-  {name:"صدور بط العابد",price:110,cat:"chicken",img:"بط.webp"},
+  {name:"(السعر علي حسب الوزن) بط العابد",price:110,cat:"chicken",img:"بط.webp", perKg:true},
+  {name:"(السعر علي حسب الوزن) صدور بط العابد",price:110,cat:"chicken",img:"بط.webp", perKg:true},
   {name:"بروست خمس قطع",price:140,cat:"chicken",img:"بروست.webp"},
   {name:"سجق فريزو",price:190,cat:"meat",img:"سجق.jpeg"},
   {name:"برجر",price:190,cat:"meat",img:"برجر.jpg"},
@@ -532,7 +532,6 @@ let data=[
   {name:"موزة برازيلي",price:290,cat:"meat",img:"موزه برازيلي.webp"},
   {name:"موزة فرخة",price:300,cat:"meat",img:"فرخه.jpg"},
   {name:"كبدةامريكي",price:200,cat:"meat",img:"كبده.jpeg"},
-  {name:"كبدة برازيلي",price:125,cat:"meat",img:"كبده.jpeg"},
   {name:"ريش بتلو",price:210,cat:"meat",img:"ريش.webp"},
   {name:"كلاوي",price:210,cat:"meat",img:"كلاوي.webp"},
   {name:"جمبري سعودي 30*40",price:580,cat:"sea",img:"جمبري.webp"},
@@ -592,7 +591,8 @@ function cat(c){
       <div class="content">
         <h4>${p.name}</h4>
 <div class="price">
-  <span dir="ltr">${p.price}</span>&nbsp;جنيه
+  <span dir="ltr">${p.price}</span>&nbsp;جنيه 
+  ${p.perKg ? "للكيلو" : ""}
 </div>
         <div class="qty">
           <button class="minus" onclick="decrease('${p.name.replace(/'/g, "\\'")}')" ${qty === 0 ? "style='opacity:0.5;cursor:not-allowed;'" : ""}>-</button>
@@ -642,16 +642,26 @@ function home(){
 
 function increase(name) {
   let product = data.find(p => p.name === name);
-  quantities[name] = (quantities[name] || 0) + 1;
+  let step = (product.cat === "meat") ? 0.5 : 1;
+
+  quantities[name] = (quantities[name] || 0) + step;
+
   if(currentCategory) cat(currentCategory);
   renderCart();
   updateCartBadge();
 }
 
 function decrease(name) {
+  let product = data.find(p => p.name === name);
+  let step = (product.cat === "meat") ? 0.5 : 1;
+
   if ((quantities[name] || 0) > 0) {
-    quantities[name]--;
-    if(quantities[name] === 0) delete quantities[name];
+    quantities[name] -= step;
+
+    if (quantities[name] <= 0) {
+      delete quantities[name];
+    }
+
     if(currentCategory) cat(currentCategory);
     renderCart();
     updateCartBadge();
@@ -713,10 +723,9 @@ function sendWhatsApp(){
     }
   }
 
-  msg += `%0Aالمجموع: ${total} جنيه;`;
-
+msg += `%0Aالمجموع: ${total} جنيه`;
  
-  window.open(`https://wa.me/201500782992?text=${msg}`, '_blank');
+  window.open(`https://wa.me/201035794567?text=${msg}`, '_blank');
 
 }
 
