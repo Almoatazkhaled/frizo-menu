@@ -82,33 +82,39 @@ body{
   left:-5px;
 }
 
-/* 🔥 NAV */
 .nav{
   position:fixed;
   top:60px;
-  left:0;
-  width:180px;
-  height:100%;
-  background:#e0e0e0;
+  width:100%;
+  background:#fff;
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  padding:15px 10px;
   gap:10px;
+  padding:10px;
+  overflow-x:auto;
+  z-index:999;
+  border-bottom:1px solid #ddd;
+}
+
+/* hide scrollbar */
+.nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav div{
-  background:#cfcfcf;
-  color:#000;
-  padding:14px 10px;
-  border-radius:10px;
+  padding:8px 15px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  background:#f5f5f5;
   cursor:pointer;
-  width:100%;
-  text-align:center;
+  white-space:nowrap;
   font-size:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  transition:0.3s;
+}
+
+.nav div.active{
+  background:#007bff;
+  color:white;
+  border-color:#007bff;
 }
 
 /* 🔵 HOME */
@@ -138,7 +144,8 @@ body{
   margin-bottom:80px;
   padding:10px;
   display:none;
-  margin-left:180px;
+  margin-left:0;
+  margin-top:140px;
 }
 
 .grid{
@@ -417,13 +424,12 @@ body{
   </div>
 </div>
 
-<div class="nav">
-  <div onclick="home()">الصفحه الرئيسيه</div>
-  <div onclick="cat('meat')">لحوم</div>
-  <div onclick="cat('chicken')">دواجن</div>
-  <div onclick="cat('sea')">بحريات</div>
-  <div onclick="cat('veg')">خضار</div>
-  <div onclick="cat('potato')">بطاطس</div>
+<div class="nav" id="nav">
+  <div onclick="cat('meat')">🍖 لحوم</div>
+  <div onclick="cat('chicken')">🍗 دواجن</div>
+  <div onclick="cat('sea')">🐟 بحريات</div>
+  <div onclick="cat('veg')">🥦 خضار</div>
+  <div onclick="cat('potato')">🥔 بطاطس</div>
 </div>
 
 <div class="home" id="home">
@@ -522,7 +528,9 @@ function home(){
 }
 
 function cat(c){
+
   currentCategory = c;
+  setActiveNav(c);
   elements.home.style.display="none";
   elements.products.style.display="block";
   let html="";
@@ -541,7 +549,27 @@ function cat(c){
         </div>
       </div>
     </div>`;
+
+    function setActiveNav(cat){
+  document.querySelectorAll('.nav div').forEach(btn=>{
+    btn.classList.remove('active');
   });
+
+  let map = {
+    meat:0,
+    chicken:1,
+    sea:2,
+    veg:3,
+    potato:4
+  };
+
+  let btns = document.querySelectorAll('.nav div');
+  if(btns[map[cat]]) btns[map[cat]].classList.add('active');
+}
+
+
+  });
+
   elements.grid.innerHTML=html;
 }
 
