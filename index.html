@@ -527,12 +527,16 @@ function home(){
   currentCategory = '';
 }
 
-function cat(c){
+// ❌ احذف الـ function القديمة كلها وحط دول مكانها:
 
+function cat(c){
   currentCategory = c;
-  setActiveNav(c);
   elements.home.style.display="none";
   elements.products.style.display="block";
+  
+  // ✅ 1- حدث الـ active nav الأول
+  setActiveNav(c);
+  
   let html="";
   data.filter(p=>p.cat==c).forEach(p=>{
     let qty = quantities[p.name] || 0;
@@ -549,8 +553,13 @@ function cat(c){
         </div>
       </div>
     </div>`;
+  });
+  
+  elements.grid.innerHTML=html;
+}
 
-    function setActiveNav(cat){
+// ✅ 2- ضع الـ function براها (خارج cat function)
+function setActiveNav(cat){
   document.querySelectorAll('.nav div').forEach(btn=>{
     btn.classList.remove('active');
   });
@@ -567,11 +576,19 @@ function cat(c){
   if(btns[map[cat]]) btns[map[cat]].classList.add('active');
 }
 
+// ✅ 3- أضف home function (كانت ناقصة)
+function home(){
+  elements.products.style.display="none";
+  elements.home.style.display="block";
+  currentCategory = '';
+  setActiveNav(''); // reset nav
+}
 
-  });
+  let btns = document.querySelectorAll('.nav div');
+  if(btns[map[cat]]) btns[map[cat]].classList.add('active');
 
   elements.grid.innerHTML=html;
-}
+
 
 function increase(name) {
   let product = data.find(p => p.name === name);
