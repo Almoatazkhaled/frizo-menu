@@ -12,11 +12,11 @@ body{
   background:#f3f3f3;
   box-sizing:border-box;
   direction:rtl;
+  font-family: 'Cairo', Arial;
 }
 *{
   box-sizing:border-box;
 }
-
 /* 🔵 HEADER */
 .header{
   position:fixed;
@@ -82,6 +82,43 @@ body{
   left:-5px;
 }
 
+.start-btn{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:#007bff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.start-btn:hover{
+  background:#f1f1f1;
+  transform:scale(1.05);
+}
+
+.card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  direction:ltr;
+  background: white;
+  padding:15px;
+  border-radius:15px;
+  width:100%;
+  max-width:500px;
+  margin:0 auto;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  border:none;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 .nav{
   position:fixed;
   top:60px;
@@ -117,25 +154,34 @@ body{
   border-color:#007bff;
 }
 
-/* 🔵 HOME */
 .home{
   margin-top:120px;
   margin-bottom:80px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:40px 20px;
-  margin-left:180px;
+  padding:60px 20px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color:white;
+  border-radius:0 0 40px 40px;
 }
+
 .big-logo{
-  width:250px;
-  height:250px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   object-fit:cover;
-  margin:auto;
-  opacity:0.05;
+  margin-bottom:20px;
+  opacity:1; /* 👈 خليها واضحة */
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
+
 .home p{
-  margin-top:20px;
-  font-size:18px;
+  margin-top:10px;
+  font-size:20px;
+  line-height:1.6;
 }
 
 /* 🔵 PRODUCTS */
@@ -168,76 +214,76 @@ body{
 
 .card{
   display: flex;
-  flex-direction: row;
-  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  direction: ltr;
   background: white;
-  padding: 15px;
+  padding: 10px;
   border-radius: 12px;
   width: 100%;
-  max-width: 680px;
+  max-width: 500px; /* 👈 بيخليه ثابت */
   margin: 0 auto;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  align-items: center;
   border:2px solid #007bff;
-  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 .card:hover{
   transform:translateY(-5px);
   box-shadow:0 8px 30px rgba(0,0,0,0.2);
 }
 .card img{
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px; /* 🔥 مهم عشان متصغرش زيادة */
   object-fit: cover;
   border-radius: 10px;
 }
 .card .content{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-end;
+  flex: 1;
+  padding: 0 10px;
 }
 .card h4{
-  margin: 0;
-  font-size: 18px;
-  color: #000;
-  text-align: right;
+  font-size:16px;
+  margin-bottom:5px;
 }
+
 .price{
-  margin: 5px 0;
-  color: #000;
-  font-weight: bold;
-  text-align: right;
+  direction: ltr;
+  unicode-bidi: plaintext;
 }
 .qty{
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;
-  gap: 10px;
-  direction: ltr; /* مهم جدًا */
-  justify-content: flex-start;
+  gap: 8px;
 }
+
 .plus, .minus{
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
+  width:32px;
+  height:32px;
+  border:none;
+  background:#007bff;
+  color:white;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.plus:hover, .minus:hover{
+  background:#0056b3;
+  transform:scale(1.1);
 }
 .qty span{
   font-size: 16px;
 }
-@media (max-width: 600px) {
-  .card {
-    flex-direction: column;
-    text-align: center;
-  }
-  .card img {
-    width: 100%;
-    height: 180px;
-  }
-}
+
 
 /* 🔵 FOOTER */
 .footer{
@@ -427,6 +473,7 @@ body{
 </div>
 
 <div class="nav" id="nav">
+  <div onclick="home()">🏠 الرئيسية</div>
   <div onclick="cat('meat')">🍖 لحوم</div>
   <div onclick="cat('chicken')">🍗 دواجن</div>
   <div onclick="cat('sea')">🐟 بحريات</div>
@@ -437,6 +484,7 @@ body{
 <div class="home" id="home">
   <img src="nobglogo.png" class="big-logo">
   <p>اهلا بيك 👋<br>اختار منتجاتك بسهولة من فريزو يونيون</p>
+  <button onclick="cat('meat')" class="start-btn">ابدأ التسوق</button>
 </div>
 
 <div class="products" id="products">
@@ -523,11 +571,7 @@ function updateCartBadge() {
   elements.cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
 }
 
-function home(){
-  elements.products.style.display="none";
-  elements.home.style.display="block";
-  currentCategory = '';
-}
+
 
 // ❌ احذف الـ function القديمة كلها وحط دول مكانها:
 
@@ -547,7 +591,9 @@ function cat(c){
       <img src="${p.img}">
       <div class="content">
         <h4>${p.name}</h4>
-        <div class="price">${p.price} جنيه</div>
+<div class="price">
+  <span dir="ltr">${p.price}</span>&nbsp;جنيه
+</div>
         <div class="qty">
           <button class="minus" onclick="decrease('${p.name.replace(/'/g, "\\'")}')" ${qty === 0 ? "style='opacity:0.5;cursor:not-allowed;'" : ""}>-</button>
           <span>${qty}</span>
@@ -560,30 +606,32 @@ function cat(c){
   elements.grid.innerHTML=html;
 }
 
-// ✅ 2- ضع الـ function براها (خارج cat function)
-function setActiveNav(cat){
-  document.querySelectorAll('.nav div').forEach(btn=>{
-    btn.classList.remove('active');
-  });
+ function setActiveNav(cat){
+  let btns = document.querySelectorAll('.nav div');
+
+  btns.forEach(btn => btn.classList.remove('active'));
 
   let map = {
-    meat:0,
-    chicken:1,
-    sea:2,
-    veg:3,
-    potato:4
+    home: 0,
+    meat: 1,
+    chicken: 2,
+    sea: 3,
+    veg: 4,
+    potato: 5
   };
 
-  let btns = document.querySelectorAll('.nav div');
-  if(btns[map[cat]]) btns[map[cat]].classList.add('active');
+  if(btns[map[cat]]){
+    btns[map[cat]].classList.add('active');
+  }
 }
+
 
 // ✅ 3- أضف home function (كانت ناقصة)
 function home(){
   elements.products.style.display="none";
   elements.home.style.display="block";
   currentCategory = '';
-  setActiveNav(''); // reset nav
+  setActiveNav('home');
 }
 
   let btns = document.querySelectorAll('.nav div');
@@ -667,9 +715,13 @@ function sendWhatsApp(){
 
   msg += `%0Aالمجموع: ${total} جنيه;`;
 
+ 
   window.open(`https://wa.me/201500782992?text=${msg}`, '_blank');
+
 }
 
+setActiveNav('home');
+home();
 </script>
 </body>
 </html>
